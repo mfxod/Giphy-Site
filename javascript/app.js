@@ -40,18 +40,23 @@ function makeDefaultButtons() {
 function makeUserButton() {
     const userInput = $("#user-input").val().trim();
     const userBtn = $("<button>");
+    
+    if (userInput === "") {
+        alert("Please enter text.")
+    } else {
     $("#btns-here").append(userBtn.attr({
         "data-search": userInput,
         "class": "btn btn-primary m-2",
         "id": "gif-btn"
     }).text(userInput));
+    }
 };
 
 // display gifs and ratings buttons
 function showGifs(response) {
     $("#gifs-here").empty();
     for (j = 0; j < response.data.length; j++) {
-        const gifDiv = $("<div>");
+        const gifDiv = $("<div>").attr("class", "d-inline-flex");
         const gifImg = $("<img>").attr({
             "src": response.data[j].images.fixed_height_still.url,
             "data-still": response.data[j].images.fixed_height_still.url,
