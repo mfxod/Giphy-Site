@@ -1,23 +1,21 @@
 
 // ----- GLOBAL VARIABLES -----
 
-// let q = "";
 const limit = 10;
 const rated = "pg-13";
 const betaKey = "VVJo8d5wojW8jce2wXohejc1JImkCXzf";
-// const queryURL = "https://api.giphy.com/v1/gifs/search?q=" + q + "&limit=" + limit + "&rating=" + rated + "&api_key=" + betaKey;
 
 const topics = [
     "Pizza",
     "Taco",
+    "Ramen",
     "Hamburger",
-    "Lasagna",
     "Cake",
     "Cheese",
-    "Ice Cream",
-    "Banana",
+    "Cookie",
     "Avocado",
-    "Potato"
+    "Potato",
+    "Kiwi"
 ];
 
 
@@ -56,7 +54,7 @@ function makeUserButton() {
 function showGifs(response) {
     $("#gifs-here").empty();
     for (j = 0; j < response.data.length; j++) {
-        const gifDiv = $("<div>").attr("class", "d-inline-flex");
+        const gifDiv = $("<div>");
         const gifImg = $("<img>").attr({
             "src": response.data[j].images.fixed_height_still.url,
             "data-still": response.data[j].images.fixed_height_still.url,
@@ -87,7 +85,7 @@ $(document).ready(function() {
 
     // on click to GET gifs based on button data- attribute
     $(document).on("click", "#gif-btn", function() {
-        let q = $(this).data("search");
+        let q = $(this).data("search").toLowerCase();
         const queryURL = "https://api.giphy.com/v1/gifs/search?q=" + q + "&limit=" + limit + "&rating=" + rated + "&api_key=" + betaKey;
 
         console.log(q);
